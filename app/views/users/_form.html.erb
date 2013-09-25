@@ -1,0 +1,41 @@
+<%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2>Imposible guardar Usuario</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    </br
+    <div class="field">
+      <%= f.label :login, "Usuario" %>
+      <%= f.text_field :login, :class => 'text_field'  %>
+    </div>
+    <div class="field">
+      <%= f.label :name, "Nombre" %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, "Correo Electrónico" %>
+      <%= f.text_field :email, :class => 'text_field'  %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, "Contraseña" %>
+      <%= f.password_field :password, :class => 'text_field'  %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation, "Confirmar Contraseña" %>
+      <%= f.password_field :password_confirmation, :class => 'text_field'  %>
+    </div>
+
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

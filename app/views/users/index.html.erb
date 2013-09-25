@@ -1,0 +1,24 @@
+<h3>Usuarios</h3>
+<table class="table table-striped">
+  <thead>
+  	<tr>
+	    <th>Nombre</th>
+	</tr>
+  </thead>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name%></td>
+        <td><%= link_to 'Ver Detalles', user %></td>
+        <td><%= link_to(user, :confirm => '¿Esta seguro?', :method => :delete, :remote => :true) do %>
+              <%= image_tag("delete.png") %>
+          <%end%>
+        </td>
+      </tr>
+  <% end %>
+
+</table>
+</br>
+
+<%= link_to "Registrar Usuario", new_user_path, :class => "btn primary" %>
+</br>
+

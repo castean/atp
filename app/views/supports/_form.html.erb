@@ -1,0 +1,50 @@
+<%= form_for @support, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :issue_type_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :issue_type_id, IssueType.order("name").all.collect{ |c| [c.name.to_s, c.id]}, {:include_blank => "-- Selecciona un Tipo de Soporte --"}, :class=>"span5"  %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :user_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :user_id, :class => 'span4' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :client_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :client_id, Client.order("company_name").all.collect{ |c| [c.company_name.to_s, c.id]}, {:include_blank => "-- Selecciona un cliente --"}, :class=>"span5"   %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :technician_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :technician_id, :class => 'span5' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :support, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :support, :class => 'span7' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :issue, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :issue, :class => 'span7', :size => "5x7"  %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :solution, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :solution, :class => 'span7', :size => "5x7" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                supports_path, :class => 'btn' %>
+  </div>
+<% end %>

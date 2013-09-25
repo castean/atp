@@ -1,0 +1,48 @@
+<%- model_class = Support -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:issue_type_id) %></th>
+      <th><%= model_class.human_attribute_name(:user_id) %></th>
+      <th><%= model_class.human_attribute_name(:client_id) %></th>
+      <th><%= model_class.human_attribute_name(:technician_id) %></th>
+      <th><%= model_class.human_attribute_name(:support) %></th>
+      <th><%= model_class.human_attribute_name(:issue) %></th>
+      <th><%= model_class.human_attribute_name(:solution) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @supports.each do |support| %>
+      <tr>
+        <td><%= link_to support.id, support_path(support) %></td>
+        <td><%= support.issue_type_id %></td>
+        <td><%= support.user_id %></td>
+        <td><%= support.client_id %></td>
+        <td><%= support.technician_id %></td>
+        <td><%= support.support %></td>
+        <td><%= support.issue %></td>
+        <td><%= support.solution %></td>
+        <td><%=l support.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_support_path(support), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      support_path(support),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_support_path,
+            :class => 'btn btn-primary' %>
